@@ -1,0 +1,1 @@
+cond_set_value = lambda y, default=0: y[0] if y else default
