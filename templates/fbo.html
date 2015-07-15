@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>NASA Spiders scraping results</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <style>
+            td {border:2px solid black;
+            padding: 5px;
+            font-size: 10px}
+        </style>
+    </head>
+    <body>
+        <h2>Find by NAICS code</h2>
+        <form method="post" action="/fbo">
+            <input type="text" name="naics" />
+            <input type="submit" />
+        </form>
+        <p>NASA Spiders scraping results</p>
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>URL</td>
+                <td>Sol_num</td>
+                <td>Agency</td>
+                <td>Office</td>
+                <td>Location</td>
+                <td>Notice type</td>
+                <td>Original posted date</td>
+                <td>Posted date</td>
+                <td>Response date</td>
+                <td>Original response date</td>
+                <td>Archiving policy</td>
+                <td>Original archive date</td>
+                <td>Archive date</td>
+                <td>Original set aside</td>
+                <td>Set aside</td>
+                <td>Classification code num</td>
+                <td>Classification code_desc</td>
+                <td>NAICS Code</td>
+                <td>Synopsis</td>
+                <td>Contracting office address</td>
+                <td>Place of performance</td>
+                <td>Primary poc</td>
+                <td>Secondary poc</td>
+                <td>State</td>
+                <td>Category</td>
+                <td>Category id</td>
+                <td>Date entered</td>
+            </thead>
+            {% for rfp in rfps %}
+                <tr>
+                    <td>{{ rfp.name }}</td>
+                    <td><a href="{{ rfp.url }}">{{ rfp.url }}</a></td>
+                    <td>{{ rfp.sol_num }}</td>
+                    <td>{{ rfp.agency }}</td>
+                    <td>{{ rfp.office }}</td>
+                    <td>{{ rfp.location }}</td>
+                    <td>{{ rfp.notice_type }}</td>
+                    <td>{{ rfp.original_posted_date }}</td>
+                    <td>{{ rfp.posted_date }}</td>
+                    <td>{{ rfp.response_date }}</td>
+                    <td>{{ rfp.original_response_date }}</td>
+                    <td>{{ rfp.archiving_policy }}</td>
+                    <td>{{ rfp.original_archive_date }}</td>
+                    <td>{{ rfp.archive_date }}</td>
+                    <td>{{ rfp.original_set_aside }}</td>
+                    <td>{{ rfp.set_aside }}</td>
+                    <td>{{ rfp.classification_code_num }}</td>
+                    <td>{{ rfp.classification_code_desc}}</td>
+                    <td>{{ rfp.naics_code.code }}</td>
+                    <td>{{ rfp.synopsis }}</td>
+                    <td>{{ rfp.contracting_office_address }}</td>
+                    <td>{{ rfp.place_of_performance }}</td>
+                    <td>{{ rfp.primary_poc }}</td>
+                    <td>{{ rfp.secondary_poc }}</td>
+                    <td>{{ rfp.state }}</td>
+                    <td>{{ rfp.category }}</td>
+                    <td>{{ rfp.category_id }}</td>
+                    <td>{{ rfp.date_entered }}</td>
+
+                </tr>
+            {% endfor%}
+        </table>
+    </body>
+
+</html>

@@ -17,50 +17,11 @@
         </style>
     </head>
     <body>
-        <h2>Find by NAICS code</h2>
-        <form method="post" action="/">
-            <input type="text" name="naics" />
-            <input type="submit" />
-        </form>
-        <p>NASA Spiders scraping results</p>
-        <table>
-            <thead>
-                <td>Title</td>
-                <td>URL</td>
-                <td>Posted</td>
-                <td>Response Due</td>
-                <td>Classification Code</td>
-                <td>NAICS Code</td>
-                <td>Set-Aside Code</td>
-                <td>Contracting Office Address</td>
-                <td>Description</td>
-                <td>Point of Contact</td>
-            </thead>
-            {% for rfp in rfps %}
-                <tr>
-                    <td>{{ rfp.title }}</td>
-                    <td><a href="{{ rfp.URL }}">{{ rfp.URL }}</a></td>
-                    <td>{{ rfp.posted }}</td>
-                    <td>{{ rfp.response_due }}</td>
-                    <td>{{ rfp.classification_code }}</td>
-                    <td>{{ rfp.NAICS_code }}</td>
-                    <td>{{ rfp.set_aside_code }}</td>
-                    <td>{{ rfp.contracting_office_address }}</td>
-                    <td>{{ rfp.description }}</td>
-                    <td>
-                        {% for contact in rfp.point_of_contact %}
-                        <ul>
-                            <li>{{ contact.name }}</li>
-                            <li>{{ contact.title }}</li>
-                            <li>{{ contact.phone }}</li>
-                            <li>{{ contact.fax }}</li>
-                            <li>{{ contact.email }}</li>
-                        </ul>
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endfor%}
-        </table>
+        <h2>Select spider</h2>
+        <ul>
+            <li><a href="/fbo">FBO spider</a></li>
+            <li><a href="/nasa">NASA spider</a></li>
+        </ul>
     </body>
 
 </html>
