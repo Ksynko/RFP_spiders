@@ -51,7 +51,7 @@ def show_results_fbo():
             rfps = OpportunityDetail.query.filter_by(naics_code=code)\
                 .all()
     else:
-        rfps = OpportunityDetail.all()
+        rfps = OpportunityDetail.query.all()
     return render_template('fbo.html', rfps=rfps)
 
 
