@@ -6,17 +6,12 @@ from rpf_spiders.rpf_spiders.models import RFP, PointOfContact, RFP_contacts,\
     db_connect, create_deals_table
 from fbo_spider.models import *
 
-# import sqlalchemy.orm
-# sqlalchemy.orm.ScopedSession = sqlalchemy.orm.scoped_session
-# from elixir import *
-# from fbo_spider.models import OpportunityDetail
-# from fbo_spider.db_config import user, password, host, database, port
-#
-#
-# metadata.bind = "postgresql://{0}:{1}@{2}:{3}/{4}?client_encoding='utf-8'".format(user, password, host, port, database)
-
 app = Flask(__name__)
 sys.path.append(".")
+
+setup_all()
+create_all()
+app.debug = True
 
 @app.route('/')
 def show_list_of_spiders():
@@ -56,17 +51,12 @@ def show_results_fbo():
             rfps = OpportunityDetail.query.filter_by(naics_code=code)\
                 .all()
     else:
-
-        rfps = OpportunityDetail.query.all()
-
+        rfps = OpportunityDetail.all()
     return render_template('fbo.html', rfps=rfps)
 
 
 
 if __name__ == "__main__":
-    setup_all()
-    create_all()
-    app.debug = True
     app.run(host='0.0.0.0')
 
 
