@@ -17,11 +17,12 @@
         </style>
     </head>
     <body>
-        <h2>Select spider</h2>
-        <ul>
-            <li><a href="/fbo">FBO spider</a></li>
-            <li><a href="/nasa">NASA spider</a></li>
-        </ul>
+        <h2>Find by NAICS code</h2>
+        <form method="post" action="/get_data">
+            <input type="text" name="naics" />
+            <input type="submit" />
+        </form>
+        <a href="/list">List of all spiders</a>
     </body>
 
 </html>

@@ -57,6 +57,36 @@ class OpportunityDetail(Entity):
 
     date_entered = Field(DateTime, default=datetime.utcnow())
 
+    def to_json(self):
+        return dict(url=self.url,
+                    name=self.name,
+                    sol_num=self.sol_num,
+                    agency=self.agency,
+                    office=self.office,
+                    location=self.location,
+                    notice_type=self.notice_type,
+                    original_posted_date=self.original_posted_date,
+                    posted_date=self.posted_date,
+                    response_date=self.response_date,
+                    original_response_date=self.original_response_date,
+                    archiving_policy=self.archiving_policy,
+                    original_archive_date=self.original_archive_date,
+                    archive_date=self.archive_date,
+                    original_set_aside=self.original_set_aside,
+                    classification_code_num=self.classification_code_num,
+                    classification_code_desc=self.classification_code_desc,
+                    naics_code=self.naics_code,
+                    synopsis=self.synopsis,
+                    contracting_office_address=self.contracting_office_address,
+                    place_of_perfomance=self.place_of_performance,
+                    primary_poc=self.primary_poc,
+                    secondary_poc=self.secondary_poc,
+                    state=self.state,
+                    category=self.category,
+                    category_id=self.category_id,
+                    date_entered=self.date_entered
+                    )
+
 
 class NAICSParent(Entity):
     using_options(tablename='naics_parent')
@@ -64,9 +94,15 @@ class NAICSParent(Entity):
     desc = Field(Unicode(1000))
     child_codes = OneToMany('NAICSChild')
 
+    def to_json(self):
+        return dict(code=self.code)
+
 
 class NAICSChild(Entity):
     using_options(tablename='naics_child')
     code = Field(Unicode(100), unique=True)
     desc = Field(Unicode(1000))
     parent_code = ManyToOne('NAICSParent')
+
+    def to_json(self):
+        return dict(code=self.code)
